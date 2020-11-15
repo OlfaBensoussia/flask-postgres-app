@@ -6,7 +6,6 @@ from .api.routes import api
 from .website.routes import website
 def create_app():
     app = Flask(__name__)
-    app.config.from_object('config.DevConfig')
     UPLOAD_FOLDER = '/Documents'
     ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
     db_config = {'uri': 'postgresql://postgres:123456789@localhost/lin_flask'}
