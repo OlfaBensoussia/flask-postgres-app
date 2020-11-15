@@ -1,8 +1,9 @@
 from flask import Blueprint, Flask, render_template, request, jsonify
-from app import db
+from flask_sqlalchemy import SQLAlchemy
 
 api = Blueprint('api', __name__)
 
+db = SQLAlchemy()
 
 class Upload(db.Model):
     __tablename__ = "uploads"
