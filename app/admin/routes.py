@@ -1,8 +1,9 @@
-from flask import Blueprint, Flask, render_template, request, jsonify
-from .app import db
-
+from flask import Blueprint, request, jsonify
+from flask_sqlalchemy import SQLAlchemy
 
 admin = Blueprint('admin', __name__)
+db = SQLAlchemy()
+
 @admin.route("/")
 class User(db.Model):
     __tablename__ = "users"
@@ -16,7 +17,7 @@ class User(db.Model):
     
     def __repr__(self):
         return '%s/%s/%s' % (self.id, self.username, self.pwd)
-@app.route('/users', methods=['POST', 'GET'])
+@admin.route('/users', methods=['POST', 'GET'])
 def users():
     
     # POST a user credential to database
@@ -50,7 +51,7 @@ def users():
             dataJson.append(dataDict)
         return jsonify(dataJson)
 
-@app.route('/users/<string:id>', methods=['GET'])
+@admin.route('/users/<string:id>', methods=['GET'])
 def oneuser(id):
 
     # GET a specific data by id
